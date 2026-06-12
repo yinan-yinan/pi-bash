@@ -39,7 +39,7 @@ pi install .
 
 ### `pi_bash`
 
-Windows 下的首选 shell 命令 runner。模型仍应保留 Pi 自带能力：查目录用内置 `ls`，读文件用 `read`，改文件用 `edit` / `write`，搜索用对应搜索工具；只有需要执行 shell 命令时，才优先使用 `pi_bash`，而不是 Pi 内置的 `bash` 工具。
+Windows 下 Pi 内置 `bash` 工具的替代品。它只替代原本会调用内置 `bash` 的命令执行；其它 Pi 工具保持原来的使用方式。
 
 通过 Git Bash 执行命令：
 
@@ -106,7 +106,7 @@ C:\Windows\System32\bash.exe
 
 ## 说明
 
-这个包不会替换 Pi 自带的文件工具。它只通过工具描述和 prompt 指南强提示模型：在 Windows 上需要执行 shell 命令时，优先调用 `pi_bash`，但查目录、读文件、改文件仍优先使用 Pi 内置工具。
+这个包不会替换 Pi 的其它工具。它只通过工具描述和 prompt 指南强提示模型：在 Windows 上把原本会调用内置 `bash` 的命令执行改用 `pi_bash`，其它工具保持原来的使用方式。
 
 这个包不会改写你的命令字符串，只负责找到 Git Bash 并执行：
 

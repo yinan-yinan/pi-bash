@@ -307,14 +307,14 @@ function registerGitBashTool(pi: ExtensionAPI, name: string, label: string) {
 		name,
 		label,
 		description:
-			"Default Windows shell runner for Pi. Run shell commands through Git Bash on Windows. Finds bash.exe using where.exe bash.exe/git.exe, excludes Windows WSL shims, then runs bash.exe -lc <command> in the Windows cwd.",
-		promptSnippet: "On Windows, use pi_bash as the default shell-command runner instead of the built-in bash tool.",
+			"Replacement for Pi's built-in bash tool on Windows. Run shell commands through Git Bash when the built-in bash tool would route to WSL or fail. Finds bash.exe using where.exe bash.exe/git.exe, excludes Windows WSL shims, then runs bash.exe -lc <command> in the Windows cwd.",
+		promptSnippet: "On Windows, use pi_bash instead of the built-in bash tool for shell command execution.",
 		promptGuidelines: [
-			`Preserve Pi's built-in file tools: use ls/read/edit/write and search tools for directory listing, file reads, and file edits when they fit the task.`,
-			`Use ${name} for shell command execution on Windows, including git, npm, node, npx, test, build, and CLI commands.`,
+			`Use ${name} only as the replacement for Pi's built-in bash tool on Windows.`,
+			`Keep using every other available Pi tool exactly as usual; ${name} changes only shell command execution that would otherwise use the built-in bash tool.`,
+			`Use ${name} for commands that would otherwise require the built-in bash tool, including git, npm, node, npx, Playwright CLI, tests, builds, and other CLI commands.`,
 			`Do not use the built-in bash tool on Windows when ${name} is available because it may route to WSL and fail.`,
 			`${name} uses where.exe to find Git Bash and ignores Windows System32 WSL shims.`,
-			`Only use the built-in bash tool if ${name} is unavailable or the user explicitly asks for it.`,
 		],
 		parameters: Type.Object({
 			command: Type.String({ description: "Single shell command string executed by bash.exe -lc." }),
