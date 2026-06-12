@@ -308,9 +308,10 @@ function registerGitBashTool(pi: ExtensionAPI, name: string, label: string) {
 		label,
 		description:
 			"Default Windows shell runner for Pi. Run shell commands through Git Bash on Windows. Finds bash.exe using where.exe bash.exe/git.exe, excludes Windows WSL shims, then runs bash.exe -lc <command> in the Windows cwd.",
-		promptSnippet: "On Windows, use pi_bash as the default shell command runner instead of the built-in bash tool.",
+		promptSnippet: "On Windows, use pi_bash as the default shell-command runner instead of the built-in bash tool.",
 		promptGuidelines: [
-			`Prefer ${name} for all shell commands on Windows, including file listing, git, npm, node, npx, test, build, and CLI commands.`,
+			`Preserve Pi's built-in file tools: use ls/read/edit/write and search tools for directory listing, file reads, and file edits when they fit the task.`,
+			`Use ${name} for shell command execution on Windows, including git, npm, node, npx, test, build, and CLI commands.`,
 			`Do not use the built-in bash tool on Windows when ${name} is available because it may route to WSL and fail.`,
 			`${name} uses where.exe to find Git Bash and ignores Windows System32 WSL shims.`,
 			`Only use the built-in bash tool if ${name} is unavailable or the user explicitly asks for it.`,
