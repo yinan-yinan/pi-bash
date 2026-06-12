@@ -1,0 +1,30 @@
+{
+  "name": "pi-bash",
+  "version": "0.1.0",
+  "description": "Pi package that provides a Git Bash-backed shell tool for Windows environments.",
+  "type": "module",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "git-bash",
+    "bash",
+    "windows"
+  ],
+  "files": [
+    "extensions/",
+    "README.md",
+    "package.json"
+  ],
+  "pi": {
+    "extensions": [
+      "./extensions/git-bash.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  }
+}
