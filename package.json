@@ -1,7 +1,7 @@
 {
   "name": "pi-bash",
   "version": "0.1.0",
-  "description": "Pi package that provides a Git Bash-backed shell tool for Windows environments.",
+  "description": "Pi package that makes Git Bash the preferred shell runner for Windows environments.",
   "type": "module",
   "keywords": [
     "pi-package",

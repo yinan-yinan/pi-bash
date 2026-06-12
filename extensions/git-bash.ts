@@ -273,8 +273,12 @@ function registerFindTool(pi: ExtensionAPI) {
 	pi.registerTool({
 		name: "pi_bash_find",
 		label: "Find Git Bash",
-		description: "Find Git Bash using where.exe bash.exe and where.exe git.exe.",
-		promptSnippet: "Find Git Bash using where.exe",
+		description: "Find Git Bash using where.exe bash.exe and where.exe git.exe. Use this to diagnose pi_bash discovery on Windows.",
+		promptSnippet: "On Windows, use pi_bash_find to diagnose Git Bash discovery for pi_bash.",
+		promptGuidelines: [
+			"Use pi_bash_find when pi_bash cannot locate Git Bash or when you need to show the selected bash.exe path.",
+			"Do not use the built-in bash tool for this diagnostic on Windows because it may route to WSL.",
+		],
 		parameters: Type.Object({}),
 		async execute() {
 			if (platform() !== "win32") throw new Error("pi_bash_find is only supported from Windows.");
@@ -303,11 +307,13 @@ function registerGitBashTool(pi: ExtensionAPI, name: string, label: string) {
 		name,
 		label,
 		description:
-			"Run a shell command through Git Bash on Windows. Finds bash.exe using where.exe bash.exe/git.exe, excludes Windows WSL shims, then runs bash.exe -lc <command> in the Windows cwd.",
-		promptSnippet: "Run shell commands through Git Bash on Windows",
+			"Default Windows shell runner for Pi. Run shell commands through Git Bash on Windows. Finds bash.exe using where.exe bash.exe/git.exe, excludes Windows WSL shims, then runs bash.exe -lc <command> in the Windows cwd.",
+		promptSnippet: "On Windows, use pi_bash as the default shell command runner instead of the built-in bash tool.",
 		promptGuidelines: [
-			`Use ${name} when shell commands should run through Git Bash instead of WSL or the built-in bash backend.`,
+			`Prefer ${name} for all shell commands on Windows, including file listing, git, npm, node, npx, test, build, and CLI commands.`,
+			`Do not use the built-in bash tool on Windows when ${name} is available because it may route to WSL and fail.`,
 			`${name} uses where.exe to find Git Bash and ignores Windows System32 WSL shims.`,
+			`Only use the built-in bash tool if ${name} is unavailable or the user explicitly asks for it.`,
 		],
 		parameters: Type.Object({
 			command: Type.String({ description: "Single shell command string executed by bash.exe -lc." }),

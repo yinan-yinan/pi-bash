@@ -1,6 +1,6 @@
 # pi-bash
 
-`pi-bash` 是一个给 Pi 用的 Windows 扩展包，用来把 Pi 的 shell 命令转发到 Git Bash 执行。
+`pi-bash` 是一个给 Pi 用的 Windows 扩展包，用来让 Pi 在 Windows 上优先使用 Git Bash 执行 shell 命令。
 
 它适合这种场景：
 
@@ -14,13 +14,13 @@
 从 GitHub 安装：
 
 ```bash
-pi install git:github.com/<你的GitHub用户名>/pi-bash@v0.1.0
+pi install git:github.com/yinan-yinan/pi-bash@v0.1.1
 ```
 
 临时试用一次：
 
 ```bash
-pi -e git:github.com/<你的GitHub用户名>/pi-bash@v0.1.0
+pi -e git:github.com/yinan-yinan/pi-bash@v0.1.1
 ```
 
 本地开发时，在仓库根目录运行：
@@ -38,6 +38,8 @@ pi install .
 ## 提供的工具
 
 ### `pi_bash`
+
+Windows 下的首选 shell runner。模型应优先使用它执行文件列表、Git、npm、Node、npx、测试、构建等 shell 命令，而不是 Pi 内置的 `bash` 工具。
 
 通过 Git Bash 执行命令：
 
@@ -103,6 +105,8 @@ C:\Windows\System32\bash.exe
 - `false` 返回非零退出码，一般是 `1`。
 
 ## 说明
+
+这个包不会真正替换 Pi 内置的 `bash` 工具，但会通过工具描述和 prompt 指南强提示模型：在 Windows 上默认优先调用 `pi_bash`。
 
 这个包不会改写你的命令字符串，只负责找到 Git Bash 并执行：
 
